@@ -4,7 +4,6 @@ const request = require('request-promise');
 const LINE_MESSAGING_API = 'https://api.line.me/v2/bot/message';
 const LINE_HEADER = {
   'Content-Type': 'application/json',
-  /* 'Authorization': `Bearer wWIEG6M546F8oZ/95CvRFnQmnDMs4tskR9XhcO+hGAKIbh+8HVcl4TnVGryHVjwH+DwkW01eyW5a2SO0Exqi+CYRqXEj4Y6FslaBeClGYWnhcfKgB5GOKfXMUg+/KEfd6xr4KI4atazkZMEXgLfuk1GUYhWQfeY8sLGRXgo3xvw=` */
   'Authorization': 'Bearer wWIEG6M546F8oZ/95CvRFnQmnDMs4tskR9XhcO+hGAKIbh+8HVcl4TnVGryHVjwH+DwkW01eyW5a2SO0Exqi+CYRqXEj4Y6FslaBeClGYWnhcfKgB5GOKfXMUg+/KEfd6xr4KI4atazkZMEXgLfuk1GUYhWQfeY8sLGRXgo3xvw='
 };
 
