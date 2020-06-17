@@ -10,7 +10,6 @@ const LINE_HEADER = {
 
 
 exports.webhook = functions.https.onRequest((req ,res) =>{
-/* exports.LineBot = functions.region('asia-east2').https.onRequest((req, res) => { */
 res.sendStatus(200)
 if (req.body.events[0].message.type !== 'text') {
     return;
