@@ -8,13 +8,13 @@ const LINE_HEADER = {
 };
 
 
-exports.webhook = functions.https.onRequest((req ,res) =>{
-res.sendStatus(200)
-if (req.body.events[0].message.type !== 'text') {
+exports.webhook = functions.https.onRequest((req, res) => {
+  res.sendStatus(200)
+  if (req.body.events[0].message.type !== 'text') {
     return;
   }
-  reply(req.body);
-
+  // reply(req.body);
+  push(res, req.body.events[0]);
 });
 
 
@@ -29,17 +29,37 @@ const reply = (bodyResponse) => {
       messages: [
         {
           type: `text`,
-          /* text: bodyResponse.events[0].message.text */
-          text:bodyResponse.events[0].source.userId
+          text: bodyResponse.events[0].message.text
         }
       ]
     })
   });
-}; 
+};
 
 
+const push = (res, msg) => {
+  return request({
+    method: `POST`,
+    uri: `${LINE_MESSAGING_API}/push`,
+    headers: LINE_HEADER,
+    body: JSON.stringify({
+      to: `zzzzz`,
+      messages: [
+        {
+          type: `text`,
+          text: msg
+        }
+      ]
+    })
+  }).then(() => {
+    return res.status(200).send(`Done`);
+  }).catch((error) => {
+    return Promise.reject(error);
+  });
+};
 
-/* 
+
+/*
  var headers = {
   'Content-Type': 'application/json',
   'Authorization': `Bearer wWIEG6M546F8oZ/95CvRFnQmnDMs4tskR9XhcO+hGAKIbh+8HVcl4TnVGryHVjwH+DwkW01eyW5a2SO0Exqi+CYRqXEj4Y6FslaBeClGYWnhcfKgB5GOKfXMUg+/KEfd6xr4KI4atazkZMEXgLfuk1GUYhWQfeY8sLGRXgo3xvw=`
@@ -50,9 +70,9 @@ exports.webhook = functions.https.onRequest((req ,res) =>
   // res.send("Hello from Firebase!");
   res.sendStatus(200)
   let token = req.body.events[0].replyToken
-  sendMessage("Hello World",token) 
+  sendMessage("Hello World",token)
 
-});  
+});
 
 const sendMessage =(message, token) =>{
   let body = JSON.stringify({
