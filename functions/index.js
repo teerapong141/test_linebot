@@ -14,7 +14,7 @@ exports.webhook = functions.https.onRequest((req, res) => {
     return;
   }
   // reply(req.body);
-  push(res, req.body.events[0]);
+  push(res, req.body.events[0].source.userId);
 });
 
 
@@ -37,17 +37,17 @@ const reply = (bodyResponse) => {
 };
 
 
-const push = (res, msg) => {
+const push = (res, uesrId) => {
   return request({
     method: `POST`,
     uri: `${LINE_MESSAGING_API}/push`,
     headers: LINE_HEADER,
     body: JSON.stringify({
-      to: `zzzzz`,
+      to: uesrId,
       messages: [
         {
           type: `text`,
-          text: msg
+          text: uesrId
         }
       ]
     })
