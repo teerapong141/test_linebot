@@ -29,7 +29,8 @@ const reply = (bodyResponse) => {
       messages: [
         {
           type: `text`,
-          text: bodyResponse.events[0].message.text
+          /* text: bodyResponse.events[0].message.text */
+          text:bodyResponse.events[0].source.userId
         }
       ]
     })
