@@ -14,6 +14,7 @@ exports.webhook = functions.https.onRequest((req, res) => {
     return;
   }
   // reply(req.body);
+  console.log(req.body.events[0].source.userId);
   push(res, req.body.events[0].source.userId);
 });
 
