@@ -7,6 +7,7 @@ const LINE_HEADER = {
   'Authorization': 'Bearer wWIEG6M546F8oZ/95CvRFnQmnDMs4tskR9XhcO+hGAKIbh+8HVcl4TnVGryHVjwH+DwkW01eyW5a2SO0Exqi+CYRqXEj4Y6FslaBeClGYWnhcfKgB5GOKfXMUg+/KEfd6xr4KI4atazkZMEXgLfuk1GUYhWQfeY8sLGRXgo3xvw='
 };
 
+//getuserid
 
 exports.LineBotReply = functions.https.onRequest((req, res) => {
   if (req.method === "POST"){
